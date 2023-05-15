@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+{% if current_user %}
+<h1>Welcome, {{ current_user['first_name'] }}!</h1>
+
+<section class="controls">
+    <form action="/sessions/delete" method="POST">
+        <button>Log out</button>
+    </form>
+
+    <a href="/pets/new">Add Pet</a>
+</section>
+
+<section class="pets">
+    {% for pet in pets %}
+    <h2>Pets</h2>
+    <section class="pet">
+        <header>
+            <ul>
+                <li>{{ pet['name'] }} - {{ pet['description'] }} - </li>
+            </ul>
+
+            <a href="pets/{{ pet['id'] }}/edit">Edit</a>
+            
+            <form action="/pets/{{ pet['id'] }}/delete" method="POST">
+                <button>Like</button>
+            </form>
+        
+            <form action="/pets/{{ pet['id'] }}/delete" method="POST">
+                <button>Like</button>
+            </form>
+        </header>
+    </section>
+    {% endfor %}
+</section>
+{% else %}
+<a href="/users/new">Sign Up</a>
+<a href="/sessions/new">Log in</a>
+{% endif %}
+
+{% endblock %}

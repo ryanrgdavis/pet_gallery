@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1>Edit Pet Profile</h1>
+<form action="/pets/{{ pet['id'] }}" method="POST" enctype="multipart/form-data">
+    <label for="name">Name: </label>
+    <input type="text" name="name" value="{{ pet['name']}}">
+
+    <label for="favorite_food">Favorite Food:</label>
+    <input type="text" name="favorite_food" value="{{ pet['favorite_food']}}">
+
+    <label for="favorite_music">Favorite Music:</label>
+    <input type="text" name="favorite_music" value="{{ pet['favorite_music']}}">
+
+    <label for="favorite_toys">Favorite Toys:</label>
+    <input type="text" name="favorite_toys" value="{{ pet['favorite_toys']}}">
+
+    <label for="image_url">Image URL:</label>
+    <input type="text" name="image_url" value="{{ pet['image_url']}}">
+
+    <label for="photo_upload">Upload Photo:</label>
+    <input type="file" name="photo_upload">
+
+    <button>Update Pet Profile</button>
+</form>
+
+{% endblock %}
