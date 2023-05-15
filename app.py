@@ -1,7 +1,7 @@
 from dotenv import load_dotenv
 load_dotenv()  # take environment variables from .env.
 import os
-from flask import Flask, redirect, session
+from flask import Flask, redirect
 from routes.pets_routes import pets_routes
 from routes.users_routes import users_routes
 from routes.sessions_routes import sessions_routes
@@ -20,7 +20,3 @@ app.register_blueprint(sessions_routes, url_prefix='/sessions')
 @app.route('/')
 def index():
     return redirect('/pets')
-
-if __name__ == 'main':
-    with app.test_request_context("/"):
-        session["key"] = "value"

@@ -4,17 +4,17 @@
 
 <h1>Edit Pet Profile</h1>
 <form action="/pets/{{ pet['id'] }}" method="POST" enctype="multipart/form-data">
-    <label for="name">Name: </label>
-    <input type="text" name="name" value="{{ pet['name']}}">
+    <label for="pet_id">Name: </label>
+    <input type="text" name="pet_id" value="{{ pet['name']}}">
 
-    <label for="favorite_food">Favorite Food:</label>
-    <input type="text" name="favorite_food" value="{{ pet['favorite_food']}}">
+    <label for="favourite_food">Favourite Food:</label>
+    <input type="text" name="favourite_food" value="{{ pet['favourite_food']}}">
 
-    <label for="favorite_music">Favorite Music:</label>
-    <input type="text" name="favorite_music" value="{{ pet['favorite_music']}}">
+    <label for="favourite_music">Favourite Music:</label>
+    <input type="text" name="favourite_music" value="{{ pet['favourite_music']}}">
 
-    <label for="favorite_toys">Favorite Toys:</label>
-    <input type="text" name="favorite_toys" value="{{ pet['favorite_toys']}}">
+    <label for="favourite_toys">Favourite Toys:</label>
+    <input type="text" name="favourite_toys" value="{{ pet['favourite_toys']}}">
 
     <label for="image_url">Image URL:</label>
     <input type="text" name="image_url" value="{{ pet['image_url']}}">

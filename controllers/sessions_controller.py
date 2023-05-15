@@ -8,13 +8,13 @@ def new():
 def add():
   email = request.form.get('email')
   password = request.form.get('password')
-  user = find_user_by_email(email)
-  if user == None:
+  users = find_user_by_email(email)
+  if users == None:
     return redirect('/sessions/new')
   
-  valid_password = bcrypt.checkpw(password.encode(), user['password_digest'].encode())
+  valid_password = bcrypt.checkpw(password.encode(), users['password_digest'].encode())
   if valid_password:
-    session['user_id'] = user['id']
+    session['user_id'] = users['id']
     return redirect('/')
   else:
     return redirect('/sessions/new')

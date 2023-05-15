@@ -2,20 +2,22 @@ CREATE DATABASE pet_profile_db;
 \c pet_profile_db 
 
 CREATE TABLE pets( 
-    id SERIAL PRIMARY KEY, 
-    name TEXT, 
+    pet_id SERIAL PRIMARY KEY, 
+    favourite_food TEXT,
+    favourite_music TEXT,
+    favourite_toys TEXT,
     image_url TEXT 
 ); 
 
-INSERT INTO pets(name, image_url)
+INSERT INTO pets(pet_id, favourite_food, favourite_music, favourite_toys, image_url)
 VALUES 
-    ('Mary', '');
+    ('Mary', 'Chicken', 'Meow - lvusm', 'Fishing Rod', 'https://i.ibb.co/6swm5Y0/IMG-1320.jpg');
 
 CREATE TABLE users( 
     id SERIAL PRIMARY KEY, 
     first_name TEXT, 
     last_name TEXT, 
-    email TEXT 
+    email TEXT,
 ); 
 
 ALTER TABLE users ADD COLUMN password_digest TEXT; 
@@ -29,10 +31,10 @@ CREATE TABLE likes(
 CREATE TABLE pet_profiles(
     id SERIAL PRIMARY KEY,
     pet_id INTEGER REFERENCES pets(id),
-    favorite_food TEXT,
-    favorite_music TEXT,
-    favorite_toys TEXT,
-    photo_url TEXT
+    favourite_food TEXT,
+    favourite_music TEXT,
+    favourite_toys TEXT,
+    image_url TEXT
 );
 
 CREATE TABLE posts(

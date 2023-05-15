@@ -15,3 +15,6 @@ def find_user_by_email(email):
 def find_user_by_id(id):
   users = sql('SELECT * FROM users WHERE id = %s', [id])
   return users[0]
+
+def create_pet_profile(pet_id, favourite_food, favourite_music, favourite_toys, image_url):
+    sql('INSERT INTO pet_profiles (pet_id, favourite_food, favourite_music, favourite_toys, image_url) VALUES (%s, %s, %s, %s, %s)', [pet_id, favourite_food, favourite_music, favourite_toys, image_url])
