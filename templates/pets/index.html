@@ -14,25 +14,37 @@
 </section>
 
 <section class="pets">
-    {% for pet in pets %}
     <h2>Pets</h2>
+    {% for pet in pets %}
     <section class="pet">
         <header>
             <ul>
-                <li>{{ pet['name'] }} - {{ pet['description'] }} - </li>
+                <li>{{ pet.pets_name }}</li>
+                <li>{{ pet.favourite_food }}</li>
+                <li>{{ pet.favourite_music }}</li>
+                <li>{{ pet.favourite_toys }}</li>
+                <li><img src="{{pet.image_url}}" alt="{{ pet.name }}"></li>
             </ul>
 
-            <a href="pets/{{ pet['id'] }}/edit">Edit</a>
-            
-            <form action="/pets/{{ pet['id'] }}/delete" method="POST">
-                <button>Like</button>
-            </form>
-        
-            <form action="/pets/{{ pet['id'] }}/delete" method="POST">
-                <button>Like</button>
+            <a href="pets/{{ user_id }}/edit">Edit</a>
+
+            <form action="/pets/{{ user_id }}/delete" method="POST">
+                <button type="submit">Delete</button>
             </form>
         </header>
     </section>
+    <h3>Comments</h3>
+    <form action="/pets/{{ pet_profile_id }}/comments" method="POST">
+        <input type="hidden" name="pet_profile_id" value="{{ pet_profile_id }}">
+        <label>Comment:</label>
+        <textarea name="comment_text" required></textarea><br>
+        <input type="submit" value="Post Comment">
+    </form>
+    {% for comment in comments %}
+        <div>
+            <p>{{ comment.comment }}</p>
+        </div>
+    {% endfor %}
     {% endfor %}
 </section>
 {% else %}

@@ -13,9 +13,9 @@ def add():
   return redirect('/')
 
 def add_pet():
-  pet_id = request.form.get("Name: ")
+  pets_name = request.form.get("Name: ")
   favourite_food = request.form.get("Favourite Food: ")
   favourite_music = request.form.get("Favourite Music: ")
   favourite_toys = request.form.get("Favourite Toys: ")
   image_url = request.form.get("Image URL: ")
-  ('INSERT INTO pet_profiles (pet_id, favourite_food, favourite_music, favourite_toys, image_url) VALUES (%s, %s, %s, %s, %s)', [pet_id, favourite_food, favourite_music, favourite_toys, image_url])
+  ('INSERT INTO pet_profiles (pets_name, favourite_food, favourite_music, favourite_toys, image_url) VALUES (%s, %s, %s, %s, %s)', [pets_name, favourite_food, favourite_music, favourite_toys, image_url])
