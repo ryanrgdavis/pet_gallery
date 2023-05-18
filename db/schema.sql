@@ -13,6 +13,7 @@ CREATE TABLE pets(
 INSERT INTO pets(pets_name, favourite_food, favourite_music, favourite_toys, image_url)
 VALUES 
     ('Mary', 'Chicken', 'Meow - lvusm', 'Fishing Rod', 'https://i.ibb.co/6swm5Y0/IMG-1320.jpg');
+    ('Mei Mei & Delilah', 'Rice', 'Bulgarian Song & Dance', 'The birds outside', 'https://i.ibb.co/ftfjSgd/bcf0b020-4f14-4fc3-9927-5696eeb94ad3.jpg')
 
 CREATE TABLE users( 
     id SERIAL PRIMARY KEY, 

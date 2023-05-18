@@ -26,23 +26,25 @@
                 <li><img src="{{pet.image_url}}" alt="{{ pet.name }}"></li>
             </ul>
 
-            <a href="pets/{{ user_id }}/edit">Edit</a>
+            <section class="controls">
+                <a href="/pets/{{ pet['pet_id'] }}/edit">Edit</a>
 
-            <form action="/pets/{{ user_id }}/delete" method="POST">
-                <button type="submit">Delete</button>
+            <form action="/pets/{{ pet['pet_id'] }}/delete" method="POST">
+                <button>Delete</button>
             </form>
+            </section>
         </header>
     </section>
     <h3>Comments</h3>
-    <form action="/pets/{{ pet_profile_id }}/comments" method="POST">
-        <input type="hidden" name="pet_profile_id" value="{{ pet_profile_id }}">
+    <form action="/pets/{{ post_id }}/comments" method="POST">
+        <input type="hidden" name="post_id" value="{{ post_id }}">
         <label>Comment:</label>
         <textarea name="comment_text" required></textarea><br>
         <input type="submit" value="Post Comment">
     </form>
-    {% for comment in comments %}
+    {% for comment in comments[post_id] %}
         <div>
-            <p>{{ comment.comment }}</p>
+            <p>{{ comment.content }}</p>
         </div>
     {% endfor %}
     {% endfor %}
