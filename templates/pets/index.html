@@ -19,14 +19,15 @@
     <section class="pet">
         <header>
             <ul>
-                <li>{{ pet.pets_name }}</li>
-                <li>{{ pet.favourite_food }}</li>
-                <li>{{ pet.favourite_music }}</li>
-                <li>{{ pet.favourite_toys }}</li>
-                <li><img src="{{pet.image_url}}" alt="{{ pet.name }}"></li>
+                <li>{{ pet['pets_name'] }}</li>
+                <li>{{ pet['favourite_food'] }}</li>
+                <li>{{ pet['favourite_music'] }}</li>
+                <li>{{ pet['favourite_toys'] }}</li>
+                <li><img src="{{ pet['image_url'] }}" alt="{{ pet.pets_name }}"></li>
             </ul>
 
             <section class="controls">
+                <a href="/pets/{{ pet['pet_id'] }}/show">Comment</a>
                 <a href="/pets/{{ pet['pet_id'] }}/edit">Edit</a>
 
             <form action="/pets/{{ pet['pet_id'] }}/delete" method="POST">
@@ -34,21 +35,36 @@
             </form>
             </section>
         </header>
-    </section>
-    <h3>Comments</h3>
-    <form action="/pets/{{ post_id }}/comments" method="POST">
-        <input type="hidden" name="post_id" value="{{ post_id }}">
-        <label>Comment:</label>
-        <textarea name="comment_text" required></textarea><br>
-        <input type="submit" value="Post Comment">
-    </form>
-    {% for comment in comments[post_id] %}
-        <div>
-            <p>{{ comment.content }}</p>
+
+        <!-- <h3>Comments</h3>
+        <form action="/pets/{{ pet['pet_id'] }}/comments" method="POST">
+            <input type="hidden" name="pet_id" value="{{ pet['pet_id'] }}">
+            <label>Comment:</label>
+            <textarea name="content" required></textarea><br>
+            <input type="submit" name="Comment" value="Add Comment">
+        </form> -->
+
+        <!-- <div>
+            <form action = "/pets/{{ pet['pet_id'] }}/toggle_comment" method="POST">
+                {% if pet['show_comments'] %}
+                    <button type="submit" name="show_comments" value="false">Hide Comments</button>
+                {% else %}
+                    <button type="submit" name="show_comments" value="true">Show Comments</button>
+                {% endif %}
+            </form>
+        </div> -->
+
+        <!-- {% if pet['show_comments'] %}
+        <div class="comments" id="comments-{{ pet['pet_id'] }}">
+                {% for comment in pet['comments'] %}
+                    <p>{{ comment['content'] }}</p>
+                {% endfor %}
         </div>
-    {% endfor %}
+        {% endif %} -->
+    </section>
     {% endfor %}
 </section>
+
 {% else %}
 <a href="/users/new">Sign Up</a>
 <a href="/sessions/new">Log in</a>

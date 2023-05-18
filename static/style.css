@@ -1,0 +1,13 @@
+/* Hide the comments by default */
+.comments {
+  display: none;
+}
+
+/* Show the comments when the toggle button is clicked */
+.comments.show {
+  display: block;
+}
+
+.hidden {
+  display: none;
+}

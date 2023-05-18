@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <h2>Pet</h2>
+        <header>
+            <ul>
+                <li>{{ pet['pets_name'] }}</li>
+                <li>{{ pet['favourite_food'] }}</li>
+                <li>{{ pet['favourite_music'] }}</li>
+                <li>{{ pet['favourite_toys'] }}</li>
+                <li><img src="{{ pet['image_url'] }}" alt="{{ pet.pets_name }}"></li>
+            </ul>
+
+            <section class="controls">
+                <a href="/pets/{{ pet['pet_id'] }}/edit">Edit</a>
+
+            <form action="/pets/{{ pet['pet_id'] }}/delete" method="POST">
+                <button>Delete</button>
+            </form>
+            </section>
+        </header>
+
+{% if comments %}
+<h2>Comments:</h2>
+<ul>
+    {% for comment in comments %}
+        <li>{{ comment['content'] }}</li>
+    {% endfor %}
+</ul>
+{% else %}
+<p>No comments yet.</p>
+{% endif %}
+
+<h2>Add a Comment:</h2>
+<form action="/pets/{{ pet['pet_id'] }}/comments" method="POST">
+<input type="hidden" name="pet_id" value="{{ pet['pet_id'] }}">
+<label>Comment:</label>
+<textarea name="content" required></textarea><br>
+<input type="submit" name="Comment" value="Add Comment">
+</form>
+{% endblock %}

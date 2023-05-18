@@ -1,16 +1,16 @@
-from flask import render_template, request, redirect
-from models.pet import all_pets, get_pet_posts, add_pet, delete_pet_post, create_comment, edit_pet_post, get_comments_for_post
+from flask import render_template, request, redirect, jsonify, url_for
+from models.pet import all_pets, add_pet, delete_pet_post, create_comment, edit_pet_post, get_comments_for_pet, get_pet_by_id
 from services.session_info import current_user
 
 def index():
     pets = all_pets()
-    user = current_user()
-    comments = {}
+    pets_with_comments = []
+    comments = []
     for pet in pets:
-        pet_posts = get_pet_posts(pet['pet_id'])
-        for post in pet_posts:
-            comments[post['id']] = get_comments_for_post(post['id'])
-    return render_template('pets/index.html', pets=pets, current_user=user, comments=comments)
+        comments = get_comments_for_pet(pet['pet_id'])
+        pet['comments'] = comments
+        pets_with_comments.append(pet)
+    return render_template('pets/index.html', pets=pets_with_comments, current_user=current_user(), comments=comments)
 
 def new():
     return render_template('pets/new.html')
@@ -25,7 +25,7 @@ def add():
     return redirect('/')
 
 def edit(pet_id):
-    pet = get_pet_posts(pet_id)
+    pet = get_pet_by_id(pet_id)
     return render_template('pets/edit.html', pet=pet)
 
 def update(pet_id):
@@ -41,8 +41,30 @@ def delete(pet_id):
     delete_pet_post(pet_id)
     return redirect('/')
 
-def comment(post_id, content):
-    post_id = request.form.get('post_id')
+def comment(pet_id):
+    pet_id = request.form.get('pet_id')
     content = request.form.get('content')
-    create_comment(post_id, content)
-    return redirect('/pets', post_id=post_id)
+    comments = get_comments_for_pet(pet_id)
+    create_comment(pet_id, content)
+    pet = get_pet_by_id(pet_id)
+    return redirect(url_for('pets_routes.show', pet_id=pet_id, pet=pet, comments=comments, current_user=current_user()))
+
+def show(pet_id):
+    pet = get_pet_by_id(pet_id)
+    comments = get_comments_for_pet(pet_id)
+    return render_template('pets/show.html', pet=pet, comments=comments, current_user=current_user())
+
+# def comment(pet_id):
+#     content = request.form.get('content')
+#     create_comment(pet_id, content)
+#     return redirect('/')
+
+# def toggle_comment(pet_id):
+#     show_comments = request.form.get('show_comments')
+#     toggle_comments(pet_id, show_comments == 'true')
+#     return redirect(url_for('pets_routes.index'))
+
+# def toggle_comment_func(pet_id):
+#     show_comments = request.form.get('show_comments')
+#     toggle_comments(pet_id, show_comments)
+#     return redirect('/pets/index.html', pets=[pet], current_user=current_user())
