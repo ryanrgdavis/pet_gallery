@@ -1,6 +1,8 @@
 import os
 import psycopg2
 import psycopg2.extras
+import dotenv
+dotenv.load_dotenv()
 
 DB_URL = f"dbname={os.environ.get('DATABASE_URL')}"
 
