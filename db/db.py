@@ -4,7 +4,7 @@ import psycopg2.extras
 import dotenv
 dotenv.load_dotenv()
 
-DB_URL = f"dbname={os.environ.get('DATABASE_URL')}"
+DB_URL = os.environ.get("DATABASE_URL", "dbname=pet_profile_db")
 
 def sql(query, parameters=[]):
     connection = psycopg2.connect(DB_URL) # open connection
