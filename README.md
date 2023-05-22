@@ -15,7 +15,7 @@ The Interactive Pet Gallery is a web application where users can explore differe
 - Flow charts of app logic:
   ![App Logic](https://i.ibb.co/Qm4CDd9/pet-profiles-flowchart.png)
 
-## :rocket: Technologies Used
+## :rocket: Cool Tech
 
 - PSQL
 - Python
@@ -24,13 +24,13 @@ The Interactive Pet Gallery is a web application where users can explore differe
 - CSS
 - venv
 
-## :scream: Known Issues
+## :scream: Bugs to fix
 
 - Displaying the current user's username in the comment section
 - No button to redirect you to the homepage when in pets 'Comments' page.
 - No styling :poop:
 
-## :unamused: Lessons Learned
+## :unamused: Lessons Learnt
 
 Through developing this app, I've learned the importance of planning first and not focusing on complex ideas and focusing on user experience instead. In the future, I will strive to follow the "Keep It Simple Stupid" principle. I didn't completely understand that last time, but hopefully this time I did.
 
