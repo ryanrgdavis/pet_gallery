@@ -2,7 +2,7 @@
 
 Welcome to the Interactive Pet Gallery! This app allows users to view and comment on various pet profiles.
 
-## :computer: [Click here](https://ryanrgdavis.github.io/my-first-app/) to see the live project!
+## :computer: [Click here](https://marys-petbook.onrender.com/) to see the live project!
 
 ## :page_facing_up: About
 
